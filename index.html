@@ -31,10 +31,15 @@
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                <li><a href="#about" data-i18n="nav_about">About Us</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                <li>
+                    <button id="lang-toggle" class="lang-btn">
+                        <i class="fa-solid fa-globe"></i> <span id="lang-text">ES</span>
+                    </button>
+                </li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -48,17 +53,18 @@
     <section id="home" class="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Elevating Your Digital Presence with Innovative Tech Solutions</h1>
-                <p>We specialize in custom web development, creating high-performance websites built for fast scaling
+                <h1 data-i18n="hero_title">Elevating Your Digital Presence with Innovative Tech Solutions</h1>
+                <p data-i18n="hero_desc">We specialize in custom web development, creating high-performance websites
+                    built for fast scaling
                     and robust digital dominance.</p>
                 <div class="hero-btns">
-                    <a href="#about" class="btn btn-primary">Learn More</a>
-                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                    <a href="#about" class="btn btn-primary" data-i18n="btn_learn_more">Learn More</a>
+                    <a href="#services" class="btn btn-secondary" data-i18n="btn_our_services">Our Services</a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="image-placeholder">
-                    <span>Image Placeholder</span>
+                    <span data-i18n="placeholder_image">Image Placeholder</span>
                 </div>
             </div>
         </div>
@@ -67,8 +73,9 @@
     <!-- Welcome Section -->
     <section class="welcome section">
         <div class="container">
-            <h2>Welcome to Ashba Technologies</h2>
-            <p>We are dedicated to helping businesses grow their digital footprint. Our team creates exceptional designs
+            <h2 data-i18n="welcome_title">Welcome to Ashba Technologies</h2>
+            <p data-i18n="welcome_desc">We are dedicated to helping businesses grow their digital footprint. Our team
+                creates exceptional designs
                 that improve conversions and deliver measurable results.</p>
         </div>
     </section>
@@ -77,23 +84,23 @@
     <section class="featured-services section section-alt">
         <div class="container">
             <div class="section-title">
-                <h2>Featured Services</h2>
+                <h2 data-i18n="feat_title">Featured Services</h2>
             </div>
             <div class="grid-3">
                 <div class="card center-text">
                     <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>Custom Web Design</h3>
-                    <p>Tailor-made designs for your unique needs.</p>
+                    <h3 data-i18n="feat_1_title">Custom Web Design</h3>
+                    <p data-i18n="feat_1_desc">Tailor-made designs for your unique needs.</p>
                 </div>
                 <div class="card center-text">
                     <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h3>Web Application Development</h3>
-                    <p>High-performance modular web applications.</p>
+                    <h3 data-i18n="feat_2_title">Web Application Development</h3>
+                    <p data-i18n="feat_2_desc">High-performance modular web applications.</p>
                 </div>
                 <div class="card center-text">
                     <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <h3>Plug & Play SEO Settings</h3>
-                    <p>Boost your visibility and outrank your competitors.</p>
+                    <h3 data-i18n="feat_3_title">Plug & Play SEO Settings</h3>
+                    <p data-i18n="feat_3_desc">Boost your visibility and outrank your competitors.</p>
                 </div>
             </div>
         </div>
@@ -103,23 +110,23 @@
     <section class="why-choose-us section">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose Us</h2>
+                <h2 data-i18n="why_title">Why Choose Us</h2>
             </div>
             <div class="grid-3">
                 <div class="card center-text no-border">
                     <div class="card-icon"><i class="fa-solid fa-user-tie"></i></div>
-                    <h3>Proven Professionals</h3>
-                    <p>Our team has years of experience delivering results.</p>
+                    <h3 data-i18n="why_1_title">Proven Professionals</h3>
+                    <p data-i18n="why_1_desc">Our team has years of experience delivering results.</p>
                 </div>
                 <div class="card center-text no-border">
                     <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>Quality Work</h3>
-                    <p>Providing only top-tier solutions that scale globally.</p>
+                    <h3 data-i18n="why_2_title">Quality Work</h3>
+                    <p data-i18n="why_2_desc">Providing only top-tier solutions that scale globally.</p>
                 </div>
                 <div class="card center-text no-border">
                     <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>Strong SEO Strategy</h3>
-                    <p>Rank higher and increase your organic sales pipeline.</p>
+                    <h3 data-i18n="why_3_title">Strong SEO Strategy</h3>
+                    <p data-i18n="why_3_desc">Rank higher and increase your organic sales pipeline.</p>
                 </div>
             </div>
         </div>
@@ -129,33 +136,34 @@
     <section id="services" class="services-details section section-alt">
         <div class="container">
             <div class="section-title">
-                <h2>Our Services</h2>
+                <h2 data-i18n="services_title">Our Services</h2>
             </div>
 
             <div class="service-category">
                 <div class="category-header">
                     <div class="cat-icon"><i class="fa-solid fa-table-columns"></i></div>
                     <div>
-                        <h3>Web Design & Development</h3>
-                        <p class="cat-desc">High-performance modular web tracking forms, hand-coded by experts.</p>
+                        <h3 data-i18n="cat_1_title">Web Design & Development</h3>
+                        <p class="cat-desc" data-i18n="cat_1_desc">High-performance modular web tracking forms,
+                            hand-coded by experts.</p>
                     </div>
                 </div>
                 <div class="grid-2 mt-4">
                     <div class="sub-card">
-                        <h4>Custom Websites</h4>
-                        <p>Fully customized site tailored to your brand values.</p>
+                        <h4 data-i18n="sub_1_1_title">Custom Websites</h4>
+                        <p data-i18n="sub_1_1_desc">Fully customized site tailored to your brand values.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Web Apps</h4>
-                        <p>High-performance scalable applications built for success.</p>
+                        <h4 data-i18n="sub_1_2_title">Web Apps</h4>
+                        <p data-i18n="sub_1_2_desc">High-performance scalable applications built for success.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Mobile Interfaces</h4>
-                        <p>Creating mobile-first responsive interfaces.</p>
+                        <h4 data-i18n="sub_1_3_title">Mobile Interfaces</h4>
+                        <p data-i18n="sub_1_3_desc">Creating mobile-first responsive interfaces.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>UI Design</h4>
-                        <p>Custom crafted components tailored for your audience.</p>
+                        <h4 data-i18n="sub_1_4_title">UI Design</h4>
+                        <p data-i18n="sub_1_4_desc">Custom crafted components tailored for your audience.</p>
                     </div>
                 </div>
             </div>
@@ -164,21 +172,21 @@
                 <div class="category-header">
                     <div class="cat-icon"><i class="fa-solid fa-pen-nib"></i></div>
                     <div>
-                        <h3>UI/UX & Graphic Design</h3>
+                        <h3 data-i18n="cat_2_title">UI/UX & Graphic Design</h3>
                     </div>
                 </div>
                 <div class="grid-3 mt-4">
                     <div class="sub-card">
-                        <h4>User Interface (UI) Design</h4>
-                        <p>Custom tailored visual assets and components.</p>
+                        <h4 data-i18n="sub_2_1_title">User Interface (UI) Design</h4>
+                        <p data-i18n="sub_2_1_desc">Custom tailored visual assets and components.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Prototypes & Wireframes</h4>
-                        <p>Actionable structural designs and layouts.</p>
+                        <h4 data-i18n="sub_2_2_title">Prototypes & Wireframes</h4>
+                        <p data-i18n="sub_2_2_desc">Actionable structural designs and layouts.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Motion Design</h4>
-                        <p>Engaging animations and creative transitions.</p>
+                        <h4 data-i18n="sub_2_3_title">Motion Design</h4>
+                        <p data-i18n="sub_2_3_desc">Engaging animations and creative transitions.</p>
                     </div>
                 </div>
             </div>
@@ -187,21 +195,21 @@
                 <div class="category-header">
                     <div class="cat-icon"><i class="fa-solid fa-server"></i></div>
                     <div>
-                        <h3>Specialized Technical Services</h3>
+                        <h3 data-i18n="cat_3_title">Specialized Technical Services</h3>
                     </div>
                 </div>
                 <div class="grid-3 mt-4">
                     <div class="sub-card">
-                        <h4>SEO Audit</h4>
-                        <p>Extensive investigation of performance metrics.</p>
+                        <h4 data-i18n="sub_3_1_title">SEO Audit</h4>
+                        <p data-i18n="sub_3_1_desc">Extensive investigation of performance metrics.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Technical SEO</h4>
-                        <p>Backend configurations and optimization setup.</p>
+                        <h4 data-i18n="sub_3_2_title">Technical SEO</h4>
+                        <p data-i18n="sub_3_2_desc">Backend configurations and optimization setup.</p>
                     </div>
                     <div class="sub-card">
-                        <h4>Consultation</h4>
-                        <p>Dedicated strategy advice and planning calls.</p>
+                        <h4 data-i18n="sub_3_3_title">Consultation</h4>
+                        <p data-i18n="sub_3_3_desc">Dedicated strategy advice and planning calls.</p>
                     </div>
                 </div>
             </div>
@@ -213,19 +221,21 @@
     <section id="about" class="about section">
         <div class="container">
             <div class="section-title">
-                <h2>About Us</h2>
+                <h2 data-i18n="about_section_title">About Us</h2>
             </div>
             <div class="grid-2">
                 <div class="about-card">
                     <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>Our mission is to empower your business with software, design rules, and integration components
+                    <h3 data-i18n="mission_title">Our Mission</h3>
+                    <p data-i18n="mission_desc">Our mission is to empower your business with software, design rules, and
+                        integration components
                         flawlessly to deliver an optimal experience.</p>
                 </div>
                 <div class="about-card">
                     <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>We envision a future where all modern businesses have access to tools that improve productivity,
+                    <h3 data-i18n="vision_title">Our Vision</h3>
+                    <p data-i18n="vision_desc">We envision a future where all modern businesses have access to tools
+                        that improve productivity,
                         revenue, and scaling capabilities.</p>
                 </div>
             </div>
@@ -236,28 +246,30 @@
     <section class="method section section-alt">
         <div class="container">
             <div class="section-title">
-                <h2>The ashba Method</h2>
+                <h2 data-i18n="method_title">The ashba Method</h2>
             </div>
             <div class="method-grid">
                 <div class="method-step">
                     <div class="step-num">1</div>
-                    <h3>Discover</h3>
-                    <p>We begin with deep dive into your goals and target audience.</p>
+                    <h3 data-i18n="method_1">Discover</h3>
+                    <p data-i18n="method_1_desc">We begin with deep dive into your goals and target audience.</p>
                 </div>
                 <div class="method-step">
                     <div class="step-num">2</div>
-                    <h3>Strategy</h3>
-                    <p>We develop a tailored execution strategy that meets your specific needs.</p>
+                    <h3 data-i18n="method_2">Strategy</h3>
+                    <p data-i18n="method_2_desc">We develop a tailored execution strategy that meets your specific
+                        needs.</p>
                 </div>
                 <div class="method-step">
                     <div class="step-num">3</div>
-                    <h3>Execution</h3>
-                    <p>Our team builds and implements the plan to give your business results.</p>
+                    <h3 data-i18n="method_3">Execution</h3>
+                    <p data-i18n="method_3_desc">Our team builds and implements the plan to give your business results.
+                    </p>
                 </div>
                 <div class="method-step">
                     <div class="step-num">4</div>
-                    <h3>Review</h3>
-                    <p>We analyze performance metrics to ensure continued success.</p>
+                    <h3 data-i18n="method_4">Review</h3>
+                    <p data-i18n="method_4_desc">We analyze performance metrics to ensure continued success.</p>
                 </div>
             </div>
         </div>
@@ -267,22 +279,23 @@
     <section id="contact" class="contact section">
         <div class="container">
             <div class="section-title">
-                <h2>Ready to Make Your Idea Come to Life?</h2>
-                <p class="subtitle">Let's discuss how we can help elevate your digital presence.</p>
+                <h2 data-i18n="contact_title">Ready to Make Your Idea Come to Life?</h2>
+                <p class="subtitle" data-i18n="contact_subtitle">Let's discuss how we can help elevate your digital
+                    presence.</p>
             </div>
 
             <div class="contact-cards">
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
                     <div>
-                        <h4>Email</h4>
+                        <h4 data-i18n="contact_email">Email</h4>
                         <p>info@ashbatech.com</p>
                     </div>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                     <div>
-                        <h4>Phone</h4>
+                        <h4 data-i18n="contact_phone">Phone</h4>
                         <p>1-800-456-7890</p>
                     </div>
                 </div>
@@ -291,32 +304,35 @@
             <div class="form-wrapper">
                 <form id="contact-form" class="contact-form">
                     <div class="form-header">
-                        <h3>Send Us A Message</h3>
+                        <h3 data-i18n="form_title">Send Us A Message</h3>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" placeholder="Your Name" required>
+                            <label data-i18n="form_label_name">Name</label>
+                            <input type="text" placeholder="Your Name" data-i18n-placeholder="form_label_name" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" placeholder="Your Email" required>
+                            <label data-i18n="form_label_email">Email</label>
+                            <input type="email" placeholder="Your Email" data-i18n-placeholder="form_label_email"
+                                required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Company</label>
-                        <input type="text" placeholder="Company Name">
+                        <label data-i18n="form_label_company">Company</label>
+                        <input type="text" placeholder="Company Name" data-i18n-placeholder="form_label_company">
                     </div>
                     <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" placeholder="How can we help you?" required></textarea>
+                        <label data-i18n="form_label_message">Message</label>
+                        <textarea rows="5" placeholder="How can we help you?" data-i18n-placeholder="form_label_message"
+                            required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    <button type="submit" class="btn btn-primary submit-btn" data-i18n="btn_send">Send Message</button>
                     <div id="form-status"></div>
                 </form>
 
                 <div class="direct-contact">
-                    <p>Prefer a more direct option? <a href="#">Call Us Today</a></p>
+                    <p><span data-i18n="direct_contact">Prefer a more direct option?</span> <a href="#"
+                            data-i18n="call_us_today">Call Us Today</a></p>
                 </div>
             </div>
         </div>
@@ -334,27 +350,27 @@
                     <p class="copyright">&copy; 2026 ashba Technologies.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Solutions</h4>
+                    <h4 data-i18n="footer_sols">Solutions</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Graphic Design</a></li>
-                        <li><a href="#">Web Apps</a></li>
-                        <li><a href="#">SEO Setup</a></li>
+                        <li><a href="#" data-i18n="sub_1_1_title">Web Design</a></li>
+                        <li><a href="#" data-i18n="cat_2_title">Graphic Design</a></li>
+                        <li><a href="#" data-i18n="sub_1_2_title">Web Apps</a></li>
+                        <li><a href="#" data-i18n="feat_3_title">SEO Setup</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Company</h4>
+                    <h4 data-i18n="footer_company">Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="#" data-i18n="nav_about">About Us</a></li>
                         <li><a href="#">Our Team</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#" data-i18n="nav_contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4 data-i18n="footer_connect">Connect</h4>
                     <ul>
-                        <li><a href="#">Email</a></li>
+                        <li><a href="#" data-i18n="contact_email">Email</a></li>
                         <li><a href="#">LinkedIn</a></li>
                         <li><a href="#">Twitter</a></li>
                         <li><a href="#">Facebook</a></li>
@@ -364,7 +380,8 @@
         </div>
     </footer>
 
-    <!-- Custom JS -->
+    <!-- Translations & Custom JS -->
+    <script src="js/translations.js"></script>
     <script src="js/script.js"></script>
 </body>
 

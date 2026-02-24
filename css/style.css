@@ -168,6 +168,25 @@ h6 {
     color: var(--primary);
 }
 
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.lang-btn:hover {
+    color: var(--primary);
+}
+
 .menu-toggle {
     display: none;
 }
@@ -293,6 +312,7 @@ h6 {
     letter-spacing: -0.02em;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 

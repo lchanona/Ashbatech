@@ -164,4 +164,45 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => heroVisual.classList.add('visible'), 500);
         }
     }, 100);
+
+    // 5. Language Toggle Handling
+    const langToggleBtn = document.getElementById('lang-toggle');
+    const langText = document.getElementById('lang-text');
+    let currentLang = localStorage.getItem('site_lang') || 'en';
+
+    function setLanguage(lang) {
+        if (typeof translations === 'undefined' || !translations[lang]) return;
+
+        // Update elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        // Update placeholder texts
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+
+        // Update button text to show the language that WILL be switched to next
+        langText.textContent = lang === 'en' ? 'ES' : 'EN';
+        document.documentElement.lang = lang;
+        localStorage.setItem('site_lang', lang);
+    }
+
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            setLanguage(currentLang);
+        });
+
+        // Initialize language
+        setLanguage(currentLang);
+    }
 });
