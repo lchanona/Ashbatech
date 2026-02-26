@@ -64,7 +64,10 @@ a {
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 15px;
-    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -218,14 +221,15 @@ h6 {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: var(--bg-light);
     box-shadow: 0 4px 15px rgba(27, 38, 59, 0.2);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(27, 38, 59, 0.3);
+    box-shadow: 0 6px 20px rgba(65, 90, 119, 0.5);
+    /* Glow effect with primary-light */
 }
 
 .btn-secondary {
@@ -267,6 +271,20 @@ h6 {
     transition-delay: 400ms;
 }
 
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -280,13 +298,28 @@ h6 {
 .hero::before {
     content: '';
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 60%;
-    height: 80%;
-    background: radial-gradient(circle, rgba(119, 141, 169, 0.15) 0%, rgba(224, 225, 221, 0) 70%);
+    top: -30%;
+    right: -20%;
+    width: 70%;
+    height: 90%;
+    background: radial-gradient(circle, rgba(119, 141, 169, 0.25) 0%, rgba(224, 225, 221, 0) 65%);
     border-radius: 50%;
     z-index: 0;
+    filter: blur(80px);
+    /* Frosted glass spread */
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(65, 90, 119, 0.15) 0%, rgba(224, 225, 221, 0) 60%);
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(60px);
 }
 
 .hero-container {
@@ -308,11 +341,15 @@ h6 {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+    /* Boost readability over gradient mesh */
 }
 
 .hero-content p {
     font-size: 1.15rem;
-    color: var(--text-muted);
+    color: var(--text-main);
+    /* Darker text for readability */
+    font-weight: 500;
     margin-bottom: 40px;
     max-width: 480px;
     line-height: 1.7;
@@ -352,11 +389,12 @@ h6 {
     box-shadow: 0 20px 40px rgba(27, 38, 59, 0.15);
     display: block;
     transition: var(--transition);
+    animation: float 6s ease-in-out infinite;
 }
 
 .hero-visual:hover .hero-image {
-    transform: translateY(-5px);
     box-shadow: 0 30px 50px rgba(27, 38, 59, 0.2);
+    /* translateY is handled by animation, removing from hover to avoid jitter */
 }
 
 /* Welcome Section */
@@ -392,7 +430,7 @@ h6 {
 
 /* Cards */
 .card {
-    background: var(--bg-light);
+    background: linear-gradient(145deg, #ffffff 0%, var(--bg-alt) 100%);
     padding: 3rem 2rem;
     border: 1px solid rgba(119, 141, 169, 0.2);
     display: flex;
@@ -458,7 +496,9 @@ h6 {
 .card:hover .card-icon {
     background: var(--primary);
     color: var(--bg-light);
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 15px rgba(65, 90, 119, 0.6);
+    /* Glow effect */
 }
 
 .card h3 {
@@ -530,7 +570,7 @@ h6 {
 
 .sub-card {
     padding: 1.5rem;
-    background: var(--bg-alt);
+    background: linear-gradient(145deg, var(--bg-alt) 0%, rgba(224, 225, 221, 0.5) 100%);
     border-radius: 12px;
     border: 1px solid transparent;
     transition: var(--transition);
@@ -538,8 +578,11 @@ h6 {
 
 .sub-card:hover {
     border-color: var(--secondary);
-    background: #ffffff;
-    transform: translateY(-2px);
+    background: linear-gradient(145deg, #ffffff 0%, var(--bg-alt) 100%);
+    transform: translateY(-4px);
+    /* Increased transform */
+    box-shadow: 0 8px 20px rgba(27, 38, 59, 0.05);
+    /* Added slight shadow */
 }
 
 .sub-card h4 {
@@ -594,6 +637,9 @@ h6 {
     transform: translateY(20px);
     opacity: 0;
     transition: var(--transition);
+    backdrop-filter: blur(8px);
+    /* Glassmorphism */
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .portfolio-item:hover .portfolio-overlay {
@@ -722,6 +768,8 @@ h6 {
     background: var(--primary);
     color: var(--bg-light);
     transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(65, 90, 119, 0.5);
+    /* Glow effect */
 }
 
 .method-step h3 {
