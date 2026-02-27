@@ -6,7 +6,7 @@
     --accent: #3b82f6;
     --accent-glow: rgba(59, 130, 246, 0.5);
     --bg-light: #F8FAFC;
-    --bg-alt: #F1F5F9;
+    --bg-alt: #DBDFE4;
     --text-main: #0F172A;
     --text-muted: #475569;
     --border: rgba(148, 163, 184, 0.1);
@@ -648,12 +648,16 @@ h6 {
 /* Portfolio Section */
 .portfolio {
     background: var(--bg-alt);
+    padding: 80px 0;
+    /* Standard section breathing room */
 }
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2.5rem;
+    /* Optimization: Lowered min-width to 300px so it fits smaller tablets/large phones 
+       without needing a specific media query for 1 column. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 2rem;
 }
 
 .portfolio-item {
@@ -661,6 +665,8 @@ h6 {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(27, 38, 59, 0.1);
+    isolation: isolate;
+    /* Performance: creates a new stacking context */
 }
 
 .portfolio-img {
@@ -668,57 +674,85 @@ h6 {
     aspect-ratio: 4/3;
     object-fit: cover;
     display: block;
+    /* Optimization: Use 'will-change' to tell the browser a transform is coming */
+    will-change: transform;
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .portfolio-item:hover .portfolio-img {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .portfolio-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 3rem 2rem 2rem;
-    background: linear-gradient(to top, rgba(27, 38, 59, 0.95) 0%, rgba(27, 38, 59, 0.7) 60%, transparent 100%);
-    color: var(--bg-light);
-    transform: translateY(20px);
+    inset: 0;
+    /* Modern shorthand for full coverage */
+    display: flex;
+    align-items: flex-end;
+    /* Keeps content at the bottom */
+    padding: 2rem;
+
+    /* Optimization: Smooth gradient for better text legibility */
+    background: linear-gradient(to top,
+            rgba(27, 38, 59, 0.9) 0%,
+            rgba(27, 38, 59, 0.4) 50%,
+            transparent 100%);
+
     opacity: 0;
-    transition: var(--transition);
-    backdrop-filter: blur(8px);
+    visibility: hidden;
+    /* Better for accessibility than just opacity */
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+
     /* Glassmorphism */
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    transform: translateY(0);
     opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Matching the <div> wrapper from the HTML */
+.overlay-content {
+    width: 100%;
 }
 
 .portfolio-overlay h3 {
     color: #ffffff;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.4rem;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .portfolio-overlay p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    margin: 0;
 }
 
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr;
+/* Media Query Optimization */
+@media (max-width: 480px) {
+    .portfolio-overlay {
+        /* On very small screens, make the overlay always slightly visible 
+           or remove the blur to save battery/performance */
+        backdrop-filter: none;
+        background: rgba(27, 38, 59, 0.8);
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
 }
 
-/* About Section */
+/* About Section Base */
 .about {
     background: var(--bg-light);
     position: relative;
     overflow: hidden;
+    padding: 80px 0;
 }
 
 .about::before {
@@ -738,9 +772,11 @@ h6 {
     z-index: 1;
 }
 
+/* Mission & Vision Cards */
 .about-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.9);
     padding: 3.5rem 2.5rem;
     text-align: center;
@@ -749,7 +785,7 @@ h6 {
     align-items: center;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(27, 38, 59, 0.05);
-    transition: var(--transition);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
 }
 
 .about-card:hover {
@@ -764,10 +800,83 @@ h6 {
     height: 80px;
     font-size: 2rem;
     border-radius: 50%;
+    /* Optimized centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
 }
 
 .about-card:hover .card-icon {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
+    /* Added a tiny bit of character */
+}
+
+/* --- New Badges & Certifications Section --- */
+
+.about-badges {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(27, 38, 59, 0.05);
+    /* Subtle separator */
+    text-align: center;
+}
+
+.badges-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    color: var(--primary);
+    opacity: 0.6;
+    margin-bottom: 3rem;
+}
+
+.badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    /* Generous spacing for a high-end look */
+}
+
+.badge-item {
+    transition: transform 0.3s ease;
+}
+
+.badge-item img {
+    height: 250px;
+    /* Consistent height is key for visual harmony */
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+}
+
+.badge-item:hover {
+    transform: translateY(-5px);
+}
+
+.badge-item:hover img {
+    filter: grayscale(0%) contrast(1);
+    opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .about-badges {
+        margin-top: 3rem;
+    }
+
+    .badges-grid {
+        gap: 2rem;
+    }
+
+    .badge-item img {
+        height: 35px;
+    }
 }
 
 /* ASHRA Method Segment */
