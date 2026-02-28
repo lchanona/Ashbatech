@@ -230,7 +230,7 @@ h6 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #35BDF6 100%);
     color: #ffffff;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
@@ -328,7 +328,7 @@ h6 {
 .blob-1 {
     width: 400px;
     height: 400px;
-    background: #3b82f6;
+    background: #60a5fa;
     top: -100px;
     right: -50px;
     animation: blob-float 20s infinite alternate;
@@ -385,7 +385,7 @@ h6 {
     margin-bottom: 30px;
     font-weight: 800;
     letter-spacing: -0.04em;
-    background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #35BDF6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
