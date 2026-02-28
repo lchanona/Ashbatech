@@ -142,6 +142,7 @@ h6 {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 2.5rem;
 }
 
@@ -384,7 +385,6 @@ h6 {
     margin-bottom: 30px;
     font-weight: 800;
     letter-spacing: -0.04em;
-    color: var(--primary);
     background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -847,7 +847,7 @@ h6 {
 }
 
 .badge-item img {
-    height: 200px;
+    height: 100px;
     /* Consistent height is key for visual harmony */
     width: auto;
     max-width: 150px;
@@ -893,8 +893,8 @@ h6 {
     top: 40px;
     left: 10%;
     width: 80%;
-    height: 2px;
-    background: dashed 2px var(--secondary);
+    height: 0;
+    border-top: 2px dashed var(--secondary);
     z-index: 0;
     opacity: 0.5;
 }
@@ -1106,10 +1106,7 @@ h6 {
     font-size: 1.5rem;
 }
 
-.footer .logo-icon {
-    background: var(--primary-light);
-    color: var(--bg-light);
-}
+
 
 .footer h4 {
     font-size: 1.1rem;
@@ -1190,6 +1187,22 @@ h6 {
         display: none;
     }
 
+    .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(224, 225, 221, 0.98);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 2rem 0;
+        align-items: center;
+        box-shadow: 0 10px 15px -3px rgba(27, 38, 59, 0.1);
+        border-bottom: 1px solid rgba(119, 141, 169, 0.2);
+    }
+
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -1210,7 +1223,10 @@ h6 {
         grid-template-columns: 1fr;
     }
 
-    .form-row,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
     .contact-cards {
         flex-direction: column;
         align-items: stretch;

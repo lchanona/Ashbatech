@@ -2,6 +2,7 @@ const translations = {
     "en": {
         "nav_home": "Home",
         "nav_services": "Services",
+        "nav_portfolio": "Portfolio",
         "nav_about": "About Us",
         "nav_contact": "Contact",
         "hero_title": "Elevating Your Digital Presence with Innovative Tech Solutions",
@@ -49,6 +50,8 @@ const translations = {
         "sub_3_2_desc": "Backend configurations and optimization setup.",
         "sub_3_3_title": "Consultation",
         "sub_3_3_desc": "Dedicated strategy advice and planning calls.",
+        "portfolio_title": "Featured Projects",
+        "portfolio_subtitle": "Explore some of our recent digital solutions.",
         "about_section_title": "About Us",
         "mission_title": "Our Mission",
         "mission_desc": "Our mission is to empower your business with software, design rules, and integration components flawlessly to deliver an optimal experience.",
@@ -77,12 +80,12 @@ const translations = {
         "call_us_today": "Call Us Today",
         "footer_sols": "Solutions",
         "footer_company": "Company",
-        "footer_connect": "Connect",
-        "placeholder_image": "Image Placeholder"
+        "footer_connect": "Connect"
     },
     "es": {
         "nav_home": "Inicio",
         "nav_services": "Servicios",
+        "nav_portfolio": "Portafolio",
         "nav_about": "Nosotros",
         "nav_contact": "Contacto",
         "hero_title": "Elevando Tu Presencia Digital con Soluciones Tecnológicas Innovadoras",
@@ -130,6 +133,8 @@ const translations = {
         "sub_3_2_desc": "Configuraciones backend y ajuste de optimizaciones.",
         "sub_3_3_title": "Consultoría",
         "sub_3_3_desc": "Asesoramiento estratégico dedicado y llamadas de planificación.",
+        "portfolio_title": "Proyectos Destacados",
+        "portfolio_subtitle": "Explore algunas de nuestras soluciones digitales recientes.",
         "about_section_title": "Sobre Nosotros",
         "mission_title": "Nuestra Misión",
         "mission_desc": "Nuestra misión es empoderar tu negocio con software, reglas de diseño y componentes de integración, de forma impecable para entregar una experiencia óptima.",
@@ -158,7 +163,42 @@ const translations = {
         "call_us_today": "Llámanos Hoy",
         "footer_sols": "Soluciones",
         "footer_company": "Compañía",
-        "footer_connect": "Conectar",
-        "placeholder_image": "Espacio para Imagen"
+        "footer_connect": "Conectar"
     }
 };
+
+// 1. Definimos el idioma actual por defecto (puedes cambiarlo a 'es' si prefieres)
+let currentLang = 'en';
+
+// 2. Seleccionamos el botón y el texto dentro del botón
+const langToggleBtn = document.getElementById('lang-toggle');
+const langTextSpan = document.getElementById('lang-text');
+
+// 3. Función principal para actualizar todos los textos de la página
+function updateLanguage(lang) {
+    // Busca todos los elementos HTML que tengan el atributo 'data-i18n'
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(el => {
+        // Obtenemos la clave de traducción (ej: 'hero_title')
+        const key = el.getAttribute('data-i18n'); 
+        
+        // Si la clave existe en nuestro diccionario para el idioma seleccionado, actualizamos el texto
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    // Actualizamos el texto del botón. 
+    // Si estamos en Inglés, mostramos "ES" para invitar a cambiar a Español, y viceversa.
+    langTextSpan.textContent = lang === 'en' ? 'ES' : 'EN';
+}
+
+// 4. Evento que escucha cuando alguien hace clic en el botón
+langToggleBtn.addEventListener('click', () => {
+    // Cambiamos el estado del idioma (si es 'en' pasa a 'es', si es 'es' pasa a 'en')
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    
+    // Ejecutamos la función de traducción
+    updateLanguage(currentLang);
+});
