@@ -151,4 +151,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setLanguage(currentLang);
     }
+
+
+    // 6. Portfolio Image Modal
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const visitLink = document.getElementById("visitLink");
+    const closeBtn = modal ? modal.querySelector(".close") : null;
+
+    if (modal && modalImg && visitLink) {
+        document.querySelectorAll(".portfolio-item").forEach(item => {
+            item.style.cursor = "pointer";
+            item.addEventListener("click", () => {
+                const img = item.querySelector(".portfolio-img");
+                if (img) {
+                    modal.classList.add("active");
+                    modalImg.src = img.src;
+                    visitLink.href = img.dataset.link || "#";
+                }
+            });
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                modal.classList.remove("active");
+            });
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("active");
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                modal.classList.remove("active");
+            }
+        });
+    }
+    
 });

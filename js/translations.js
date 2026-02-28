@@ -80,7 +80,8 @@ const translations = {
         "call_us_today": "Call Us Today",
         "footer_sols": "Solutions",
         "footer_company": "Company",
-        "footer_connect": "Connect"
+        "footer_connect": "Connect",
+        "visit_website": "Visit Website"
     },
     "es": {
         "nav_home": "Inicio",
@@ -163,7 +164,8 @@ const translations = {
         "call_us_today": "Llámanos Hoy",
         "footer_sols": "Soluciones",
         "footer_company": "Compañía",
-        "footer_connect": "Conectar"
+        "footer_connect": "Conectar",
+        "visit_website": "Visitar Sitio Web"
     }
 };
 
