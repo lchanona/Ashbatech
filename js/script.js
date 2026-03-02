@@ -1,92 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu Toggle
+    // 1. Mobile Menu Toggle — uses CSS class instead of inline styles
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
     const navbar = document.getElementById('navbar');
 
     if (mobileMenu) {
         mobileMenu.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-                mobileMenu.classList.remove('active');
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'rgba(224, 225, 221, 0.98)';
-                navLinks.style.backdropFilter = 'blur(10px)';
-                navLinks.style.padding = '2rem 0';
-                navLinks.style.alignItems = 'center';
-                navLinks.style.boxShadow = '0 10px 15px -3px rgba(27, 38, 59, 0.1)';
-                navLinks.style.borderBottom = '1px solid rgba(119, 141, 169, 0.2)';
-                mobileMenu.classList.add('active');
-            }
+            navLinks.classList.toggle('mobile-open');
+            mobileMenu.classList.toggle('active');
         });
     }
 
-    // Close menu when a link is clicked (for mobile)
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    // Close menu when a nav link is clicked (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                navLinks.style.display = 'none';
-                if (mobileMenu) mobileMenu.classList.remove('active');
-            }
+            navLinks.classList.remove('mobile-open');
+            if (mobileMenu) mobileMenu.classList.remove('active');
         });
     });
 
-    // Reset styles if window resizes past mobile breakpoint
+    // Reset mobile menu state on resize past breakpoint
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            navLinks.style.display = 'flex';
-            navLinks.style.flexDirection = 'row';
-            navLinks.style.position = 'static';
-            navLinks.style.padding = '0';
-            navLinks.style.boxShadow = 'none';
-            navLinks.style.borderBottom = 'none';
-            navLinks.style.alignItems = 'normal';
-            navLinks.style.backgroundColor = 'transparent';
-            navLinks.style.backdropFilter = 'none';
-            if (mobileMenu) mobileMenu.classList.remove('active');
-        } else {
-            navLinks.style.display = 'none';
+            navLinks.classList.remove('mobile-open');
             if (mobileMenu) mobileMenu.classList.remove('active');
         }
     });
 
-    // 2. Active Link & Navbar Scrolled State
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
+    // 2. Active Link & Navbar Scrolled State (debounced via rAF)
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+    let scrollTicking = false;
 
-    window.addEventListener('scroll', () => {
-        // Navbar Scrolled State
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    function onScroll() {
+        // Navbar shrink on scroll
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
 
-        // Active Link Highlighting
+        // Active link highlighting
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                const id = section.getAttribute('id');
-                if (id) {
-                    current = id;
-                }
+            if (window.scrollY >= section.offsetTop - 150) {
+                current = section.id;
             }
         });
 
         navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') && item.getAttribute('href').slice(1) === current) {
-                item.classList.add('active');
-            }
+            item.classList.toggle('active', item.getAttribute('href').slice(1) === current);
         });
-    });
+
+        scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            requestAnimationFrame(onScroll);
+            scrollTicking = true;
+        }
+    }, { passive: true });
 
     // 3. Contact Form Submission Handling
     const contactForm = document.getElementById('contact-form');
@@ -106,52 +76,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. Scroll Reveal Animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: stop observing once it's visible
-                // observer.unobserve(entry.target);
+                obs.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15 });
 
-    // Initial setup for elements to animate
-
-    // Cards
+    // Staggered card animations
     const cards = document.querySelectorAll('.card, .sub-card, .about-card, .method-step, .contact-card');
+    const delays = ['', 'delay-100', 'delay-200', 'delay-300'];
+
     cards.forEach((card, index) => {
-        card.classList.add('fade-up');
-        // Add staggered delays for grid items based on index
-        if (index % 3 === 1) card.classList.add('delay-100');
-        if (index % 3 === 2) card.classList.add('delay-200');
-        if (index % 4 === 1) card.classList.add('delay-100');
-        if (index % 4 === 2) card.classList.add('delay-200');
-        if (index % 4 === 3) card.classList.add('delay-300');
+        card.classList.add('fade-up', delays[index % delays.length]);
         observer.observe(card);
     });
 
-    // Section Titles
-    const titles = document.querySelectorAll('.section-title');
-    titles.forEach(title => {
+    // Section titles
+    document.querySelectorAll('.section-title').forEach(title => {
         title.classList.add('fade-up');
         observer.observe(title);
     });
 
-    // Category Headers in Services
-    const catHeaders = document.querySelectorAll('.category-header');
-    catHeaders.forEach(header => {
+    // Category headers
+    document.querySelectorAll('.category-header').forEach(header => {
         header.classList.add('fade-up');
         observer.observe(header);
     });
 
-    // Trigger initial hero animation (doesn't need intersection observer as it's always in view on load)
+    // Hero entrance animation (always in view on load)
     setTimeout(() => {
         document.querySelectorAll('.hero-content h1, .hero-content p, .hero-btns').forEach((el, index) => {
             el.classList.add('fade-up');
@@ -165,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 100);
 
-    // 5. Language Toggle Handling
+    // 5. Language Toggle
     const langToggleBtn = document.getElementById('lang-toggle');
     const langText = document.getElementById('lang-text');
     let currentLang = localStorage.getItem('site_lang') || 'en';
@@ -173,36 +128,67 @@ document.addEventListener('DOMContentLoaded', () => {
     function setLanguage(lang) {
         if (typeof translations === 'undefined' || !translations[lang]) return;
 
-        // Update elements with data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                el.textContent = translations[lang][key];
-            }
+            const text = translations[lang][el.getAttribute('data-i18n')];
+            if (text) el.textContent = text;
         });
 
-        // Update placeholder texts
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang][key]) {
-                el.placeholder = translations[lang][key];
-            }
+            const text = translations[lang][el.getAttribute('data-i18n-placeholder')];
+            if (text) el.placeholder = text;
         });
 
-        // Update button text to show the language that WILL be switched to next
         langText.textContent = lang === 'en' ? 'ES' : 'EN';
         document.documentElement.lang = lang;
         localStorage.setItem('site_lang', lang);
     }
 
     if (langToggleBtn) {
-        langToggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+        langToggleBtn.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'es' : 'en';
             setLanguage(currentLang);
         });
 
-        // Initialize language
         setLanguage(currentLang);
     }
+
+
+    // 6. Portfolio Image Modal
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const visitLink = document.getElementById("visitLink");
+    const closeBtn = modal ? modal.querySelector(".close") : null;
+
+    if (modal && modalImg && visitLink) {
+        document.querySelectorAll(".portfolio-item").forEach(item => {
+            item.style.cursor = "pointer";
+            item.addEventListener("click", () => {
+                const img = item.querySelector(".portfolio-img");
+                if (img) {
+                    modal.classList.add("active");
+                    modalImg.src = img.src;
+                    visitLink.href = img.dataset.link || "#";
+                }
+            });
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                modal.classList.remove("active");
+            });
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("active");
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                modal.classList.remove("active");
+            }
+        });
+    }
+    
 });

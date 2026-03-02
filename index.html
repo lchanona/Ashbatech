@@ -68,7 +68,7 @@
                     and robust digital dominance.</p>
                 <div class="hero-btns">
                     <a href="#about" class="btn btn-primary" data-i18n="btn_learn_more">Learn More</a>
-                    <a href="#services" class="btn btn-secondary" data-i18n="btn_our_services">Our Services</a>
+                    <!-- <a href="#services" class="btn btn-secondary" data-i18n="btn_our_services">Our Services</a> -->
                 </div>
             </div>
             <div class="hero-visual">
@@ -234,25 +234,79 @@
             </div>
 
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="images/portfolio-1.png" alt="SaaS Dashboard Project" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <div class="overlay-content">
-                            <h3>NexaAnalytics Dashboard</h3>
-                            <p>B2B SaaS Data Visualization</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="images/portfolio-2.png" alt="Fintech Mobile App" class="portfolio-img" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <div class="overlay-content">
-                            <h3>Apex Finance App</h3>
-                            <p>Mobile Banking Interface</p>
-                        </div>
-                    </div>
-                </div>
+
+                
+    <div class="portfolio-item" onclick="window.open('https://iberoconsultants.com/', '_blank')">
+        <img src="images/ibero.png"
+             alt="Ibero Global Consultants"
+             class="portfolio-img"
+             data-link="https://iberoconsultants.com/"
+             loading="lazy">
+        <div class="portfolio-overlay">
+            <div class="overlay-content">
+                <h3>Ibero Global Consultants</h3>
+                <p>Consulting Firm</p>
             </div>
+        </div>
+    </div>
+
+    <div class="portfolio-item" onclick="window.open('https://iberosolar.com/', '_blank')">
+        <img src="images/iberosolar.png"
+             alt="Ibero Solar"
+             class="portfolio-img"
+             data-link="https://iberosolar.com"
+             loading="lazy">
+        <div class="portfolio-overlay">
+            <div class="overlay-content">
+                <h3>Ibero Solar</h3>
+                <p>Solar Energy Company</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-item" onclick="window.open('https://iberositios.com/', '_blank')">
+        <img src="images/iberositios.png"
+             alt="Ibero Sites"
+             class="portfolio-img"
+             data-link="https://iberositios.com"
+             loading="lazy">
+        <div class="portfolio-overlay">
+            <div class="overlay-content">
+                <h3>Ibero Sites</h3>
+                <p>Web Hosting & Reseller</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-item" onclick="window.open('https://iberocontractors.org/wp-login.php?redirect_to=https%3A%2F%2Fiberocontractors.org%2F&bp-auth=1&action=bpnoaccess', '_blank')">
+        <img src="images/iberocontractors1.png"
+             alt="Ibero Contractors"
+             class="portfolio-img"
+             data-link="https://iberocontractors.com"
+             loading="lazy">
+        <div class="portfolio-overlay">
+            <div class="overlay-content">
+                <h3>Ibero Contractors</h3>
+                <p>Private Community Website</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-item" onclick="window.open('https://iberodesign.com//', '_blank')">
+        <img src="images/iberom&d.png"
+             alt="Ibero M&D"
+             class="portfolio-img"
+             data-link="https://iberomd.com"
+             loading="lazy">
+        <div class="portfolio-overlay">
+            <div class="overlay-content">
+                <h3>Ibero Marketing & Design</h3>
+                <p>Marketing & Design Company</p>
+            </div>
+        </div>
+    </div>
+
+</div>
         </div>
     </section>
 
@@ -281,17 +335,18 @@
                 <h4 class="badges-title">Certifications & Partners</h4>
                 <div class="badges-grid">
                     <div class="badge-item">
-                        <img src="images/image.png" alt="Cisco" title="Cisco"
-                            link="https://www.credly.com/users/luis-chanona.de866834/badges#credly">
+                        <a href="https://www.credly.com/users/luis-chanona.de866834/badges#credly" target="_blank" rel="noopener noreferrer">
+                            <img src="images/image.png" alt="Cisco Certification" title="Cisco" loading="lazy">
+                        </a>
                     </div>
                     <div class="badge-item">
-                        <img src="images/blob.png" alt="Cisco" title="Cisco">
+                        <img src="images/blob.png" alt="Partner Badge" title="Partner" loading="lazy">
                     </div>
                     <div class="badge-item">
-                        <img src="images/image (1).png" alt="Cisco" title="Cisco">
+                        <img src="images/image (1).png" alt="Professional Certification" title="Certification" loading="lazy">
                     </div>
                     <div class="badge-item">
-                        <img src="images/image (2).png" alt="Cisco" title="Cisco">
+                        <img src="images/image (2).png" alt="Technology Partner" title="Partner" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -435,6 +490,15 @@
             </div>
         </div>
     </footer>
+
+    <!-- Portfolio Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Project preview">
+        <div class="modal-actions">
+            <a id="visitLink" href="#" target="_blank" rel="noopener noreferrer" data-i18n="visit_website">Visit Website</a>
+        </div>
+    </div>
 
     <!-- Translations & Custom JS -->
     <script src="js/translations.js"></script>

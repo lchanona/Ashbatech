@@ -142,6 +142,7 @@ h6 {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 2.5rem;
 }
 
@@ -229,7 +230,7 @@ h6 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #35BDF6 100%);
     color: #ffffff;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
@@ -327,7 +328,7 @@ h6 {
 .blob-1 {
     width: 400px;
     height: 400px;
-    background: #3b82f6;
+    background: #60a5fa;
     top: -100px;
     right: -50px;
     animation: blob-float 20s infinite alternate;
@@ -384,8 +385,7 @@ h6 {
     margin-bottom: 30px;
     font-weight: 800;
     letter-spacing: -0.04em;
-    color: var(--primary);
-    background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #35BDF6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -707,6 +707,8 @@ h6 {
     /* Glassmorphism */
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+    /* All clicks pass through to the portfolio-item container */
 }
 
 .portfolio-item:hover .portfolio-overlay {
@@ -718,6 +720,8 @@ h6 {
 /* Matching the <div> wrapper from the HTML */
 .overlay-content {
     width: 100%;
+    pointer-events: none;
+    /* Clicks pass through to the portfolio-item container */
 }
 
 .portfolio-overlay h3 {
@@ -745,6 +749,96 @@ h6 {
         visibility: visible;
         transform: none;
     }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.modal.active {
+    display: flex;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    max-width: 85%;
+    max-height: 70vh;
+    border-radius: 12px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    animation: modalScaleIn 0.3s ease;
+}
+
+@keyframes modalScaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+    z-index: 1;
+}
+
+.close:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.modal-actions {
+    margin-top: 1.5rem;
+}
+
+.modal-actions a {
+    display: inline-block;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.modal-actions a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 /* About Section Base */
@@ -847,7 +941,7 @@ h6 {
 }
 
 .badge-item img {
-    height: 200px;
+    height: 100px;
     /* Consistent height is key for visual harmony */
     width: auto;
     max-width: 150px;
@@ -893,8 +987,8 @@ h6 {
     top: 40px;
     left: 10%;
     width: 80%;
-    height: 2px;
-    background: dashed 2px var(--secondary);
+    height: 0;
+    border-top: 2px dashed var(--secondary);
     z-index: 0;
     opacity: 0.5;
 }
@@ -1106,10 +1200,7 @@ h6 {
     font-size: 1.5rem;
 }
 
-.footer .logo-icon {
-    background: var(--primary-light);
-    color: var(--bg-light);
-}
+
 
 .footer h4 {
     font-size: 1.1rem;
@@ -1190,6 +1281,22 @@ h6 {
         display: none;
     }
 
+    .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(224, 225, 221, 0.98);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 2rem 0;
+        align-items: center;
+        box-shadow: 0 10px 15px -3px rgba(27, 38, 59, 0.1);
+        border-bottom: 1px solid rgba(119, 141, 169, 0.2);
+    }
+
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -1210,7 +1317,10 @@ h6 {
         grid-template-columns: 1fr;
     }
 
-    .form-row,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
     .contact-cards {
         flex-direction: column;
         align-items: stretch;
