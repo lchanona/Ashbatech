@@ -90,7 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const delays = ['', 'delay-100', 'delay-200', 'delay-300'];
 
     cards.forEach((card, index) => {
-        card.classList.add('fade-up', delays[index % delays.length]);
+        card.classList.add('fade-up');
+        const delayClass = delays[index % delays.length];
+        if (delayClass) {
+            card.classList.add(delayClass);
+        }
         observer.observe(card);
     });
 
@@ -190,5 +194,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
 });

@@ -168,39 +168,3 @@ const translations = {
         "visit_website": "Visitar Sitio Web"
     }
 };
-
-// 1. Definimos el idioma actual por defecto (puedes cambiarlo a 'es' si prefieres)
-let currentLang = 'en';
-
-// 2. Seleccionamos el botón y el texto dentro del botón
-const langToggleBtn = document.getElementById('lang-toggle');
-const langTextSpan = document.getElementById('lang-text');
-
-// 3. Función principal para actualizar todos los textos de la página
-function updateLanguage(lang) {
-    // Busca todos los elementos HTML que tengan el atributo 'data-i18n'
-    const elements = document.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(el => {
-        // Obtenemos la clave de traducción (ej: 'hero_title')
-        const key = el.getAttribute('data-i18n'); 
-        
-        // Si la clave existe en nuestro diccionario para el idioma seleccionado, actualizamos el texto
-        if (translations[lang][key]) {
-            el.textContent = translations[lang][key];
-        }
-    });
-
-    // Actualizamos el texto del botón. 
-    // Si estamos en Inglés, mostramos "ES" para invitar a cambiar a Español, y viceversa.
-    langTextSpan.textContent = lang === 'en' ? 'ES' : 'EN';
-}
-
-// 4. Evento que escucha cuando alguien hace clic en el botón
-langToggleBtn.addEventListener('click', () => {
-    // Cambiamos el estado del idioma (si es 'en' pasa a 'es', si es 'es' pasa a 'en')
-    currentLang = currentLang === 'en' ? 'es' : 'en';
-    
-    // Ejecutamos la función de traducción
-    updateLanguage(currentLang);
-});

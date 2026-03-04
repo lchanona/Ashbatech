@@ -465,16 +465,18 @@ h6 {
 }
 
 /* Grids */
-.grid-3 {
+.grid-3,
+.grid-2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
 }
 
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .grid-2 {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
 }
 
 /* Cards */
