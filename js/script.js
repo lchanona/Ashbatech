@@ -58,20 +58,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // 3. Contact Form Submission Handling
+    // 3. Contact Form Submission Handling (with Formspree and reCAPTCHA)
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Check reCAPTCHA
+            if (typeof grecaptcha !== 'undefined') {
+                const response = grecaptcha.getResponse();
+                if (!response) {
+                    alert("Please complete the reCAPTCHA.");
+                    return;
+                }
+            }
+
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             btn.textContent = "Sending...";
+            btn.disabled = true;
 
-            setTimeout(() => {
-                alert("Thank you! Your message has been sent successfully.");
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert("Thank you! Your message has been sent successfully.");
+                    contactForm.reset();
+                    if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+                } else {
+                    alert("Oops! There was a problem submitting your form.");
+                }
+            } catch (error) {
+                alert("Oops! There was a problem submitting your form.");
+            } finally {
                 btn.textContent = originalText;
-                contactForm.reset();
-            }, 1000);
+                btn.disabled = false;
+            }
         });
     }
 
@@ -134,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const text = translations[lang][el.getAttribute('data-i18n')];
-            if (text) el.textContent = text;
+            if (text) el.innerHTML = text;
         });
 
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {

@@ -21,6 +21,9 @@
 
     <!-- Favicon -->
     <link rel="icon" href="images/favicon-logo.svg" type="image/svg+xml">
+
+    <!-- ReCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -189,7 +192,7 @@
                         <p data-i18n="sub_2_1_desc">Custom tailored visual assets and components.</p>
                     </div>
                     <div class="sub-card">
-                        <h4 data-i18n="sub_2_2_title">Prototypes & Wireframes</h4>
+                        <h4 data-i18n="sub_2_2_title">Wireframes</h4>
                         <p data-i18n="sub_2_2_desc">Actionable structural designs and layouts.</p>
                     </div>
                     <div class="sub-card">
@@ -208,12 +211,13 @@
                 </div>
                 <div class="grid-3 mt-4">
                     <div class="sub-card">
-                        <h4 data-i18n="sub_3_1_title">SEO Audit</h4>
-                        <p data-i18n="sub_3_1_desc">Extensive investigation of performance metrics.</p>
+                        <h4 data-i18n="sub_3_1_title">IT Support & System Administration</h4>
+                        <p data-i18n="sub_3_1_desc">Preventive maintenance, remote and on-site support, and system
+                            administration.</p>
                     </div>
                     <div class="sub-card">
-                        <h4 data-i18n="sub_3_2_title">Technical SEO</h4>
-                        <p data-i18n="sub_3_2_desc">Backend configurations and optimization setup.</p>
+                        <h4 data-i18n="sub_3_2_title">Cybersecurity and Monitoring</h4>
+                        <p data-i18n="sub_3_2_desc">Intrusion detection, security audits, and system monitoring.</p>
                     </div>
                     <div class="sub-card">
                         <h4 data-i18n="sub_3_3_title">Consultation</h4>
@@ -319,10 +323,7 @@
                 <h4 class="badges-title">Certifications & Partners</h4>
                 <div class="badges-grid">
                     <div class="badge-item">
-                        <a href="https://www.credly.com/users/luis-chanona.de866834/badges#credly" target="_blank"
-                            rel="noopener noreferrer">
-                            <img src="images/image.png" alt="Cisco Certification" title="Cisco" loading="lazy">
-                        </a>
+                        <img src="images/image.png" alt="Cisco Certification" title="Cisco" loading="lazy">
                     </div>
                     <div class="badge-item">
                         <img src="images/blob.png" alt="Partner Badge" title="Partner" loading="lazy">
@@ -334,6 +335,10 @@
                     <div class="badge-item">
                         <img src="images/image (2).png" alt="Technology Partner" title="Partner" loading="lazy">
                     </div>
+                </div>
+                <div class="badges-cta">
+                    <a href="https://www.credly.com/users/luis-chanona.de866834/badges#credly" target="_blank"
+                        rel="noopener noreferrer" class="btn btn-primary" data-i18n="btn_know_more">Know more</a>
                 </div>
             </div>
         </div>
@@ -389,39 +394,45 @@
                         <p>info@ashbatech.com</p>
                     </div>
                 </div>
-                <div class="contact-card">
+                <!-- <div class="contact-card">
                     <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                     <div>
                         <h4 data-i18n="contact_phone">Phone</h4>
-                        <p>1-800-456-7890</p>
+                        <p>1-801-671-9747</p>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="form-wrapper">
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/info@ashbatech.com"
+                    method="POST">
                     <div class="form-header">
                         <h3 data-i18n="form_title">Send Us A Message</h3>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label data-i18n="form_label_name">Name</label>
-                            <input type="text" placeholder="Your Name" data-i18n-placeholder="form_label_name" required>
+                            <input type="text" name="name" placeholder="Your Name"
+                                data-i18n-placeholder="form_label_name" required>
                         </div>
                         <div class="form-group">
                             <label data-i18n="form_label_email">Email</label>
-                            <input type="email" placeholder="Your Email" data-i18n-placeholder="form_label_email"
-                                required>
+                            <input type="email" name="email" placeholder="Your Email"
+                                data-i18n-placeholder="form_label_email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label data-i18n="form_label_company">Company</label>
-                        <input type="text" placeholder="Company Name" data-i18n-placeholder="form_label_company">
+                        <input type="text" name="company" placeholder="Company Name"
+                            data-i18n-placeholder="form_label_company">
                     </div>
                     <div class="form-group">
                         <label data-i18n="form_label_message">Message</label>
-                        <textarea rows="5" placeholder="How can we help you?" data-i18n-placeholder="form_label_message"
-                            required></textarea>
+                        <textarea name="message" rows="5" placeholder="How can we help you?"
+                            data-i18n-placeholder="form_label_message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LebH4UsAAAAAGd3RWjga1Damq5l4ZlHY9-OnRwm"></div>
                     </div>
                     <button type="submit" class="btn btn-primary submit-btn" data-i18n="btn_send">Send Message</button>
                     <div id="form-status"></div>
@@ -449,28 +460,29 @@
                 <div class="footer-col">
                     <h4 data-i18n="footer_sols">Solutions</h4>
                     <ul>
-                        <li><a href="#" data-i18n="sub_1_1_title">Web Design</a></li>
-                        <li><a href="#" data-i18n="cat_2_title">Graphic Design</a></li>
-                        <li><a href="#" data-i18n="sub_1_2_title">Web Apps</a></li>
-                        <li><a href="#" data-i18n="feat_3_title">SEO Setup</a></li>
+                        <li><a href="#services" data-i18n="sub_1_1_title">Web Design</a></li>
+                        <li><a href="#services" data-i18n="cat_2_title">Graphic Design</a></li>
+                        <li><a href="#services" data-i18n="sub_1_2_title">Web Apps</a></li>
+                        <li><a href="#services" data-i18n="feat_3_title">Specialized Technical Services</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4 data-i18n="footer_company">Company</h4>
                     <ul>
-                        <li><a href="#" data-i18n="nav_about">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#" data-i18n="nav_contact">Contact Us</a></li>
+                        <li><a href="#about" data-i18n="nav_about">About Us</a></li>
+                        <li><a href="#about">Our Team</a></li>
+                        <li><a href="#contact" data-i18n="nav_contact">Contact Us</a></li>
+                        <li><a href="privacy-policy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4 data-i18n="footer_connect">Connect</h4>
                     <ul>
-                        <li><a href="#" data-i18n="contact_email">Email</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
+                        <li><a href="mailto:info@ashbatech.com" data-i18n="contact_email">Email</a></li>
+                        <li><a href="https://www.linkedin.com/in/luis-alfonso-chanona-ruiz-837976202" target="_blank"
+                                rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.facebook.com/ashbatech" target="_blank"
+                                rel="noopener noreferrer">Facebook</a></li>
                     </ul>
                 </div>
             </div>

@@ -132,7 +132,6 @@ h6 {
     height: 36px;
     width: 36px;
     object-fit: contain;
-    mix-blend-mode: multiply;
     transition: var(--transition);
 }
 
@@ -953,6 +952,10 @@ h6 {
 
 .badge-item:hover {
     transform: translateY(-5px);
+}
+
+.badges-cta {
+    margin-top: 5rem;
 }
 
 .badge-item:hover img {
