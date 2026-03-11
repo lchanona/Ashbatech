@@ -138,6 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(header);
     });
 
+    // Badge items (Certifications)
+    document.querySelectorAll('.badge-item').forEach((badge, index) => {
+        badge.classList.add('fade-up');
+        const delayClass = delays[index % delays.length];
+        if (delayClass) {
+            badge.classList.add(delayClass);
+        }
+        observer.observe(badge);
+    });
+
     // Hero entrance animation (always in view on load)
     setTimeout(() => {
         document.querySelectorAll('.hero-content h1, .hero-content p, .hero-btns').forEach((el, index) => {

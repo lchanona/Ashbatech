@@ -192,6 +192,50 @@ h6 {
     color: var(--primary);
 }
 
+.floating-lang-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--primary) 0%, #35BDF6 100%);
+    color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(27, 38, 59, 0.25);
+    z-index: 1000;
+    justify-content: center;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.floating-lang-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #35BDF6 0%, var(--primary) 100%);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.floating-lang-btn:hover {
+    color: #ffffff;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(27, 38, 59, 0.4);
+}
+
+.floating-lang-btn:hover::before {
+    opacity: 1;
+}
+
+.floating-lang-btn #lang-text {
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
 .menu-toggle {
     display: none;
 }
@@ -938,7 +982,7 @@ h6 {
 }
 
 .badge-item {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .badge-item img {
@@ -947,19 +991,38 @@ h6 {
     width: auto;
     max-width: 150px;
     object-fit: contain;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    /* Initialize drop-shadow for smooth transition */
 }
 
-.badge-item:hover {
-    transform: translateY(-5px);
+@keyframes badgeFloat {
+    0% {
+        transform: translateY(-8px) scale(1.1);
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.1);
+    }
+
+    100% {
+        transform: translateY(-8px) scale(1.1);
+    }
+}
+
+.badge-item:hover,
+.badge-item.visible {
+    transform: translateY(-8px) scale(1.1);
+    animation: badgeFloat 3s ease-in-out infinite;
 }
 
 .badges-cta {
     margin-top: 5rem;
 }
 
-.badge-item:hover img {
-    filter: grayscale(0%) contrast(1);
+.badge-item:hover img,
+.badge-item.visible img {
+    filter: grayscale(0%) contrast(1.1) drop-shadow(0 15px 25px rgba(27, 38, 59, 0.15));
     opacity: 1;
 }
 
@@ -974,7 +1037,7 @@ h6 {
     }
 
     .badge-item img {
-        height: 35px;
+        height: 65px;
     }
 }
 
@@ -1347,5 +1410,13 @@ h6 {
 
     .section {
         padding: 60px 0;
+    }
+
+    .floating-lang-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.2rem;
     }
 }
