@@ -81,14 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(contactForm);
 
             try {
-                const response = await fetch(contactForm.action, {
+                const response = await fetch('send-email.php', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
 
+                const result = await response.json();
+
                 if (response.ok) {
-                    alert("Thank you! Your message has been sent successfully.");
+                    alert(result.success || "Thank you! Your message has been sent successfully.");
                     contactForm.reset();
                     if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
                 } else {
