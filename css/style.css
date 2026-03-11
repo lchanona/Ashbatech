@@ -1032,12 +1032,34 @@ h6 {
         margin-top: 3rem;
     }
 
+    .badges-title {
+        margin-bottom: 2rem;
+    }
+
+    .badges-grid {
+        gap: 2.5rem;
+    }
+
+    .badge-item img {
+        height: 100px;
+    }
+
+    .badges-cta {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
     .badges-grid {
         gap: 2rem;
     }
 
     .badge-item img {
-        height: 65px;
+        height: 85px;
+    }
+
+    .badges-cta {
+        margin-top: 2.5rem;
     }
 }
 
